@@ -364,8 +364,8 @@ headheight=15pt
 %% graphics packages
 \RequirePackage{graphicx}
 \renewcommand{\tablename}{表}
-\setlength{\belowcaptionskip}{4pt}
-\setlength{\abovecaptionskip}{4pt}  % 设置 caption 与上下文间距
+\setlength{\belowcaptionskip}{2pt}
+\setlength{\abovecaptionskip}{2pt}  % 设置 caption 与上下文间距
 
 
 
