@@ -1,32 +1,48 @@
 \section{包设计}
 \subsection{整体架构设计}
 本系统为了能更加有效地进行整合、生产宏观模型，就需要对系统中的类进行分组，以下是本系统中的包设计。
+
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.4]{image/o2.png}
+	\includegraphics[scale=0.75]{image/o2.png}
 	\caption{舆情系统包的设计图}
 \end{figure}
 
+\newpage
 \subsection{包的设计说明}
 下表为服务器的包设计表
-\begin{tabular}{c c|} 
-包名 & 
-\multicolumn{2}{c}{设计说明} \\ 
-\hline 
-com.yuqing.yingshi.service & 该包主要存放了高层调用Dao的接口\\
-com.yuqing.yingshi.controller & 改包主要存放了业务逻辑相关类，依赖于com.yuqing.yingshi.service，调用Service以完成业务逻辑\\
-com.yuqing.yingshi.result& 该包存放了服务器与web端交互时返回的结果对应编码\\
-com.yuqing.yingshi.dao&主要负责数据访问，该包中的类封装了对数据库的访问（只包含最原子的数据操作），供高层调用，依赖于com.yuqing.yingshi.entity\\
-com.yuqing.yingshi.config& 存放了与前端web网页交互的相关配置\\
-com.yuqing.yingshi.entity&该包主要存放数据库表中所对应的实体类\\
-com.yuqing.yingshi.service.impl&该包存放了service包中定义的接口的具体实现\\
-com.yuqing.yingshi.util&存放了项目相关工具类\\
-\end{tabular}
+
+\begin{longtable}[c]{|p{6cm}|p{7cm}|}
+	\caption{包设计表}
+	\label{tab:tablep1}\\
+	\hline
+	\rowcolor[HTML]{DAE8FC} 
+	包名 & 设计说明    \\ \hline
+	\endfirsthead
+	%
+	\multicolumn{2}{c}%
+	{{表13：包设计表}} \\
+	\endhead
+	%
+	com.yuqing.yingshi.service & 该包主要存放了高层调用Dao的接口\\\hline
+	com.yuqing.yingshi.controller & 改包主要存放了业务逻辑相关类，依赖于com.yuqing.yingshi.service，调用Service以完成业务逻辑\\\hline
+	com.yuqing.yingshi.result& 该包存放了服务器与web端交互时返回的结果对应编码\\\hline
+	com.yuqing.yingshi.dao&主要负责数据访问，该包中的类封装了对数据库的访问（只包含最原子的数据操作），供高层调用，依赖于com.yuqing.yingshi.entity\\\hline
+	com.yuqing.yingshi.config& 存放了与前端web网页交互的相关配置\\\hline
+	com.yuqing.yingshi.entity&该包主要存放数据库表中所对应的实体类\\\hline
+	com.yuqing.yingshi.service.impl&该包存放了service包中定义的接口的具体实现\\\hline
+	com.yuqing.yingshi.util&存放了项目相关工具类\\\hline
+\end{longtable}
+
 
 \section{类设计}
 本小结以包为单位，对每个包所含有的类及类与类间的调用关系进行说明。
-\begin{tabular}{|c|c|} 
+\begin{table}
+	\caption{com.yuqing.yingshi.dao相关类}
+	\centering
+\begin{tabular}{|p{3cm}|p{10cm}|} 
 \hline 
+\rowcolor[HTML]{DAE8FC} 
 \multicolumn{2}{|c|}{com.yuqing.yingshi.dao相关类} \\ 
 \hline 
 UserDao&封装与User实体类相关的数据访问方法\\
@@ -46,10 +62,14 @@ InfoDao&封装与Info实体类相关的数据访问方法\\
 OrderDao &封装与Order实体类相关的数据访问方法\\
 \hline 
 \end{tabular}
+\end{table}
 
-
-\begin{tabular}{|c|c|} 
-\hline 
+\begin{table}
+	\caption{com.yuqing.yingshi.entity相关类}
+	\centering
+	\begin{tabular}{|p{3cm}|p{10cm}|} 
+		\hline 
+		\rowcolor[HTML]{DAE8FC} 
 \multicolumn{2}{|c|}{com.yuqing.yingshi.entity相关类} \\ 
 \hline 
 User &用户个人信息的实体类\\
@@ -69,11 +89,15 @@ Info &单条博文/帖子信息的实体类\\
 Order &用户订单的实体类\\
 \hline 
 \end{tabular}
+\end{table}
 
 
-
-\begin{tabular}{|c|c|} 
-\hline 
+\begin{table}
+	\caption{com.yuqing.yingshi.service相关类}
+	\centering
+	\begin{tabular}{|p{3cm}|p{10cm}|} 
+		\hline 
+		\rowcolor[HTML]{DAE8FC} 
 \multicolumn{2}{|c|}{com.yuqing.yingshi.service相关类} \\ 
 \hline 
 UserService&定义了与User实体类相关的业务逻辑接口\\
@@ -93,63 +117,92 @@ InfoService&定义了与Info实体类相关的业务逻辑接口\\
 OrderService&定义了与Order实体类相关的业务逻辑接口\\
 \hline 
 \end{tabular}
-
-\begin{tabular}{|c|c|} 
-\hline 
+\end{table}
+\begin{table}
+	\caption{com.yuqing.yingshi.util相关类}
+	\centering
+	\begin{tabular}{|p{4.5cm}|p{8.5cm}|} 
+		\hline 
+		\rowcolor[HTML]{DAE8FC} 
+		\multicolumn{2}{|c|}{com.yuqing.yingshi.util相关类} \\ 
+		\hline 
+		SpringContextUtils&获取spring容器bean对象工具类\\
+		BytesBuilder&字节构造器\\
+		BytesParser&字节处理器\\
+		\hline 
+	\end{tabular}
+\end{table}
+\begin{table}
+	\caption{com.yuqing.yingshi.result相关类}
+	\centering
+	\begin{tabular}{|p{4.5cm}|p{8.5cm}|} 
+		\hline 
+		\rowcolor[HTML]{DAE8FC} 
+		\multicolumn{2}{|c|}{com.yuqing.yingshi.result相关类} \\ 
+		\hline 
+		Result&结果返回形式定义\\
+		ResultCode&定义返回结果编码\\
+		\hline 
+	\end{tabular}
+\end{table}
+\begin{table}
+	\caption{com.yuqing.yingshi. controller相关类}
+	\centering
+	\begin{tabular}{|p{4.5cm}|p{8.5cm}|} 
+		\hline 
+		\rowcolor[HTML]{DAE8FC} 
 \multicolumn{2}{|c|}{com.yuqing.yingshi. controller相关类} \\ 
 \hline 
 UserControlle&定义了响应用户相关界面不同点击事件的方法，根据事件的不同调用 UserService的相应方法实现功能，以json格式返回。\\
 LoginController&定义了登陆注册界面不同点击事件的方法，根据事件的不同调用 UserService的相应方法实现功能，以json格式返回。\\
-Search_EventsController&定义了搜索热门影视事件/影视作品相关界面不同点击事件的方法，根据事件的不同调用 NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
-Search_RoleController&定义了搜索明星/公司/工作室相关界面不同点击事件的方法，根据事件的不同调用 RoleService、CompanyService、StudioService的相应方法实现功能，以json格式返回。\\
+Search\_EventsController&定义了搜索热门影视事件/影视作品相关界面不同点击事件的方法，根据事件的不同调用 NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
+Search\_RoleController&定义了搜索明星/公司/工作室相关界面不同点击事件的方法，根据事件的不同调用 RoleService、CompanyService、StudioService的相应方法实现功能，以json格式返回。\\
 MenuController&定义了展示影视事件/明星/影视作品菜单相关界面不同点击事件的方法，根据事件的不同调用 RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
-Browse_HistoryController&定义了浏览历史记录相关界面不同点击事件的方法，根据事件的不同调用 HistoryService的相应方法实现功能，以json格式返回。\\
-Browse_ForkController&定义了浏览收藏记录相关界面不同点击事件的方法，根据事件的不同调用 ForkService的相应方法实现功能，以json格式返回。\\
-PayController&定义了会员支付相关界面不同点击事件的方法，根据事件的不同调用 PayService的相应方法实现功能，以json格式返回。\\
-MonitorController&定义了监控预警相关界面不同点击事件的方法，根据事件的不同调用 MonitorService的相应方法实现功能，以json格式返回。\\
-Create_ReportController&定义了生成报告相关界面不同点击事件的方法，根据事件的不同调用 ReportService的相应方法实现功能，以json格式返回。\\
-Show_RankeventController&定义了热门事件排行榜相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
-Marketing_EffectController&定义了营销效果分析与追踪相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
-Relation_MapController&定义了明星关系图谱相关界面不同点击事件的方法，根据事件的不同调用 RoleService的相应方法实现功能，以json格式返回。\\
-Hot_DegreeController&定义了分析事件热度相关的功能与方法，根据事件的不同调用 RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
-Emotion_AnalysisController&定义了情感分析相关的功能与方法，根据事件的不同调用RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
+Browse\_HistoryController&定义了浏览历史记录相关界面不同点击事件的方法，根据事件的不同调用 HistoryService的相应方法实现功能，以json格式返回。\\
+Browse\_ForkController&定义了浏览收藏记录相关界面不同点击事件的方法，根据事件的不同调用 ForkService的相应方法实现功能，以json格式返回。\\
 \hline 
 \end{tabular}
+\end{table}
+\begin{table}
+	\caption{com.yuqing.yingshi. controller相关类（续）}
+	\centering
+	\begin{tabular}{|p{4.5cm}|p{8.5cm}|} 
+		\hline 
+		\rowcolor[HTML]{DAE8FC} 
+		\multicolumn{2}{|c|}{com.yuqing.yingshi. controller相关类} \\ 
+		\hline 
+PayController&定义了会员支付相关界面不同点击事件的方法，根据事件的不同调用 PayService的相应方法实现功能，以json格式返回。\\
+MonitorController&定义了监控预警相关界面不同点击事件的方法，根据事件的不同调用 MonitorService的相应方法实现功能，以json格式返回。\\
+Create\_ReportController&定义了生成报告相关界面不同点击事件的方法，根据事件的不同调用 ReportService的相应方法实现功能，以json格式返回。\\
 
-\begin{tabular}{|c|c|} 
+Show\_RankeventController&定义了热门事件排行榜相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
+Marketing\_EffectController&定义了营销效果分析与追踪相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
+Relation\_MapController&定义了明星关系图谱相关界面不同点击事件的方法，根据事件的不同调用 RoleService的相应方法实现功能，以json格式返回。\\
+Hot\_DegreeController&定义了分析事件热度相关的功能与方法，根据事件的不同调用 RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
+Emotion\_AnalysisController&定义了情感分析相关的功能与方法，根据事件的不同调用RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
 \hline 
+\end{tabular}
+\end{table}
+\begin{table}
+	\caption{com.yuqing.yingshi.config相关类}
+	\centering
+	\begin{tabular}{|p{4.5cm}|p{8.5cm}|} 
+		\hline 
+		\rowcolor[HTML]{DAE8FC} 
 \multicolumn{2}{|c|}{com.yuqing.yingshi.config相关类} \\ 
 \hline 
 MyWebConfigurer& 定义了与前端web页面交互的相关配置\\
 \hline 
 \end{tabular}
+\end{table}
 
-\begin{tabular}{|c|c|} 
-\hline 
-\multicolumn{2}{|c|}{com.yuqing.yingshi.util相关类} \\ 
-\hline 
-SpringContextUtils&获取spring容器bean对象工具类\\
-BytesBuilder&字节构造器\\
-BytesParser&字节处理器\\
-\hline 
-\end{tabular}
-
-\begin{tabular}{|c|c|} 
-\hline 
-\multicolumn{2}{|c|}{com.yuqing.yingshi.result相关类} \\ 
-\hline 
-Result&结果返回形式定义\\
-ResultCode&定义返回结果编码\\
-\hline 
-\end{tabular}
-
-
+\newpage
 \section{接口设计}
 \subsection{注册登录模块}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b1.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b1.png} %修改路径下图片名称 scale 图片缩放
 	\caption{注册登录模块内部接口} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -158,22 +211,23 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b2.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b2.png} %修改路径下图片名称 scale 图片缩放
 	\caption{注册实现接口} %修改图例（图片标题）
 \end{figure}
+
 \begin{itemize} 
 	\item 登录实现接口
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b3.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b3.png} %修改路径下图片名称 scale 图片缩放
 	\caption{登录实现接口} %修改图例（图片标题）
 \end{figure}
 \subsection{搜索模块}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b4.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b4.png} %修改路径下图片名称 scale 图片缩放
 	\caption{搜索模块内部接口} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -182,7 +236,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b5.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b5.png} %修改路径下图片名称 scale 图片缩放
 	\caption{搜索热点事件实现接口} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -190,14 +244,14 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b6.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b6.png} %修改路径下图片名称 scale 图片缩放
 	\caption{搜索热点明星实现接口} %修改图例（图片标题）
 \end{figure}
 \subsection{展示模块}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b7.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b7.png} %修改路径下图片名称 scale 图片缩放
 	\caption{展示模块内部接口} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -206,7 +260,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b8.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b8.png} %修改路径下图片名称 scale 图片缩放
 	\caption{展示热点事件实现接口} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -214,14 +268,14 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b9.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b9.png} %修改路径下图片名称 scale 图片缩放
 	\caption{展示热点明星实现接口实现} %修改图例（图片标题）
 \end{figure}
 \subsection{记录查询模块}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b10.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b10.png} %修改路径下图片名称 scale 图片缩放
 	\caption{记录查询模块内部接口实现} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -230,7 +284,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b11.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b11.png} %修改路径下图片名称 scale 图片缩放
 	\caption{查询浏览记录接口实现} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -238,14 +292,14 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b12.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b12.png} %修改路径下图片名称 scale 图片缩放
 	\caption{查询收藏记录接口实现} %修改图例（图片标题）
 \end{figure}
 \subsection{支付模块}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b13.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b13.png} %修改路径下图片名称 scale 图片缩放
 	\caption{支付模块内部接口} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -254,14 +308,14 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b14.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b14.png} %修改路径下图片名称 scale 图片缩放
 	\caption{支付功能接口实现} %修改图例（图片标题）
 \end{figure}
 \subsection{监控预警模块}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b15.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b15.png} %修改路径下图片名称 scale 图片缩放
 	\caption{监控预警模块内部接口} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -270,14 +324,14 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b16.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b16.png} %修改路径下图片名称 scale 图片缩放
 	\caption{监控预警功能实现} %修改图例（图片标题）
 \end{figure}
 \subsection{排行榜功能}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b17.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b17.png} %修改路径下图片名称 scale 图片缩放
 	\caption{排行榜模块内部接口} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -286,7 +340,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b18.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b18.png} %修改路径下图片名称 scale 图片缩放
 	\caption{查询日排名接口实现} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -294,7 +348,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b19.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b19.png} %修改路径下图片名称 scale 图片缩放
 	\caption{查询周排名接口实现} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -302,14 +356,14 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b20.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b20.png} %修改路径下图片名称 scale 图片缩放
 	\caption{查询月排名接口实现} %修改图例（图片标题）
 \end{figure}
 \subsection{分析模块}
 \subsubsection{模块内部接口}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b21.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b21.png} %修改路径下图片名称 scale 图片缩放
 	\caption{分析模块内部接口} %修改图例（图片标题）
 \end{figure}
 \subsubsection{内部接口设计}
@@ -318,7 +372,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b28.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b28.png} %修改路径下图片名称 scale 图片缩放
 	\caption{生成分析报告接口实现} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -326,7 +380,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b23.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b23.png} %修改路径下图片名称 scale 图片缩放
 	\caption{营销效果分析接口实现} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -334,7 +388,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b24.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b24.png} %修改路径下图片名称 scale 图片缩放
 	\caption{热度分析接口实现} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -342,7 +396,7 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b25.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b25.png} %修改路径下图片名称 scale 图片缩放
 	\caption{情感分析接口实现} %修改图例（图片标题）
 \end{figure}
 \begin{itemize}
@@ -350,6 +404,6 @@ ResultCode&定义返回结果编码\\
 \end{itemize}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.7]{image/b26.png} %修改路径下图片名称 scale 图片缩放
+	\includegraphics[scale=0.75]{image/b26.png} %修改路径下图片名称 scale 图片缩放
 	\caption{生成人物关系图谱接口实现} %修改图例（图片标题）
 \end{figure}
