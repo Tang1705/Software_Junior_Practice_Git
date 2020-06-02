@@ -9,19 +9,27 @@
 
 \subsection{包的设计说明}
 下表为服务器的包设计表
-\begin{tabular}{c c|} 
-包名 & 
-\multicolumn{2}{c}{设计说明} \\ 
-\hline 
-com.yuqing.yingshi.service & 该包主要存放了高层调用Dao的接口\\
-com.yuqing.yingshi.controller & 改包主要存放了业务逻辑相关类，依赖于com.yuqing.yingshi.service，调用Service以完成业务逻辑\\
-com.yuqing.yingshi.result& 该包存放了服务器与web端交互时返回的结果对应编码\\
-com.yuqing.yingshi.dao&主要负责数据访问，该包中的类封装了对数据库的访问（只包含最原子的数据操作），供高层调用，依赖于com.yuqing.yingshi.entity\\
-com.yuqing.yingshi.config& 存放了与前端web网页交互的相关配置\\
-com.yuqing.yingshi.entity&该包主要存放数据库表中所对应的实体类\\
-com.yuqing.yingshi.service.impl&该包存放了service包中定义的接口的具体实现\\
-com.yuqing.yingshi.util&存放了项目相关工具类\\
-\end{tabular}
+\begin{longtable}[c]{|p{6cm}|p{7cm}|}
+	\caption{包设计表}
+	\label{tab:tablep1}\\
+	\hline
+	\rowcolor[HTML]{DAE8FC} 
+	包名 & 设计说明    \\ \hline
+	\endfirsthead
+	%
+	\multicolumn{2}{c}%
+	{{表13：包设计表}} \\
+	\endhead
+	%
+	com.yuqing.yingshi.service & 该包主要存放了高层调用Dao的接口\\\hline
+	com.yuqing.yingshi.controller & 改包主要存放了业务逻辑相关类，依赖于com.yuqing.yingshi.service，调用Service以完成业务逻辑\\\hline
+	com.yuqing.yingshi.result& 该包存放了服务器与web端交互时返回的结果对应编码\\\hline
+	com.yuqing.yingshi.dao&主要负责数据访问，该包中的类封装了对数据库的访问（只包含最原子的数据操作），供高层调用，依赖于com.yuqing.yingshi.entity\\\hline
+	com.yuqing.yingshi.config& 存放了与前端web网页交互的相关配置\\\hline
+	com.yuqing.yingshi.entity&该包主要存放数据库表中所对应的实体类\\\hline
+	com.yuqing.yingshi.service.impl&该包存放了service包中定义的接口的具体实现\\\hline
+	com.yuqing.yingshi.util&存放了项目相关工具类\\\hline
+\end{longtable}
 
 \section{类设计}
 本小结以包为单位，对每个包所含有的类及类与类间的调用关系进行说明。
@@ -100,19 +108,19 @@ OrderService&定义了与Order实体类相关的业务逻辑接口\\
 \hline 
 UserControlle&定义了响应用户相关界面不同点击事件的方法，根据事件的不同调用 UserService的相应方法实现功能，以json格式返回。\\
 LoginController&定义了登陆注册界面不同点击事件的方法，根据事件的不同调用 UserService的相应方法实现功能，以json格式返回。\\
-Search_EventsController&定义了搜索热门影视事件/影视作品相关界面不同点击事件的方法，根据事件的不同调用 NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
-Search_RoleController&定义了搜索明星/公司/工作室相关界面不同点击事件的方法，根据事件的不同调用 RoleService、CompanyService、StudioService的相应方法实现功能，以json格式返回。\\
+Search\_EventsController&定义了搜索热门影视事件/影视作品相关界面不同点击事件的方法，根据事件的不同调用 NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
+Search\_RoleController&定义了搜索明星/公司/工作室相关界面不同点击事件的方法，根据事件的不同调用 RoleService、CompanyService、StudioService的相应方法实现功能，以json格式返回。\\
 MenuController&定义了展示影视事件/明星/影视作品菜单相关界面不同点击事件的方法，根据事件的不同调用 RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
-Browse_HistoryController&定义了浏览历史记录相关界面不同点击事件的方法，根据事件的不同调用 HistoryService的相应方法实现功能，以json格式返回。\\
-Browse_ForkController&定义了浏览收藏记录相关界面不同点击事件的方法，根据事件的不同调用 ForkService的相应方法实现功能，以json格式返回。\\
+Browse\_HistoryController&定义了浏览历史记录相关界面不同点击事件的方法，根据事件的不同调用 HistoryService的相应方法实现功能，以json格式返回。\\
+Browse\_ForkController&定义了浏览收藏记录相关界面不同点击事件的方法，根据事件的不同调用 ForkService的相应方法实现功能，以json格式返回。\\
 PayController&定义了会员支付相关界面不同点击事件的方法，根据事件的不同调用 PayService的相应方法实现功能，以json格式返回。\\
 MonitorController&定义了监控预警相关界面不同点击事件的方法，根据事件的不同调用 MonitorService的相应方法实现功能，以json格式返回。\\
-Create_ReportController&定义了生成报告相关界面不同点击事件的方法，根据事件的不同调用 ReportService的相应方法实现功能，以json格式返回。\\
-Show_RankeventController&定义了热门事件排行榜相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
-Marketing_EffectController&定义了营销效果分析与追踪相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
-Relation_MapController&定义了明星关系图谱相关界面不同点击事件的方法，根据事件的不同调用 RoleService的相应方法实现功能，以json格式返回。\\
-Hot_DegreeController&定义了分析事件热度相关的功能与方法，根据事件的不同调用 RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
-Emotion_AnalysisController&定义了情感分析相关的功能与方法，根据事件的不同调用RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
+Create\_ReportController&定义了生成报告相关界面不同点击事件的方法，根据事件的不同调用 ReportService的相应方法实现功能，以json格式返回。\\
+Show\_RankeventController&定义了热门事件排行榜相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
+Marketing\_EffectController&定义了营销效果分析与追踪相关界面不同点击事件的方法，根据事件的不同调用 NewsService的相应方法实现功能，以json格式返回。\\
+Relation\_MapController&定义了明星关系图谱相关界面不同点击事件的方法，根据事件的不同调用 RoleService的相应方法实现功能，以json格式返回。\\
+Hot\_DegreeController&定义了分析事件热度相关的功能与方法，根据事件的不同调用 RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
+Emotion\_AnalysisController&定义了情感分析相关的功能与方法，根据事件的不同调用RoleService、CompanyService、StudioService、NewsService、MovieService、TVseriesService、VarietyService的相应方法实现功能，以json格式返回。\\
 \hline 
 \end{tabular}
 
